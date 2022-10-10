@@ -17,6 +17,11 @@ public class UserServiceImpl implements UserService {
 	public User_ getUser(long id) {
 		return userDao.findById(id).orElse(null);
 	}
+	
+	@Override
+	public User_ getUser(String email, String password) {
+		return userDao.findByEmailAndPassword(email, password);
+	}
 
 	@Override
 	public User_ addUser(String firstName, String lastName, String phone, String email, String password) {

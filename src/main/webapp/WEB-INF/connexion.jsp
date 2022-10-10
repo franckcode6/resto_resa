@@ -30,6 +30,11 @@
 					type="password" id="password" name="MDP" class="form-control">
 			</div>
 			
+			<div class="mb-4">
+				<input type="checkbox" id="pro" name="PRO?" class="form-check-input">
+				<label for="pro" class="form-check-label">Professionnel</label> 
+			</div>
+			
 			<div>
 			<input type="submit" value="Connexion" class="btn btn-success me-2">
 			<a href="/inscription" class="btn btn-danger">S'inscrire</a>
@@ -37,5 +42,6 @@
 			</div>
 		</form>
 	</main>
+	<%@include file="footer.jsp"%>
 </body>
 </html>
