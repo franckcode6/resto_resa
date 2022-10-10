@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.h2.Driver</property>
+		<property name="hibernate.connection.url">jdbc:h2:mem:restau_resa</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+
+		<mapping class="fr.open.restau_resa.business.City" />
+		<mapping class="fr.open.restau_resa.business.Country" />
+		<mapping class="fr.open.restau_resa.business.Menu" />
+		<mapping class="fr.open.restau_resa.business.Option" />
+		<mapping class="fr.open.restau_resa.business.Professionnal" />
+		<mapping class="fr.open.restau_resa.business.Reservation" />
+		<mapping class="fr.open.restau_resa.business.ReservationState" />
+		<mapping class="fr.open.restau_resa.business.Restaurant" />
+		<mapping class="fr.open.restau_resa.business.Tag" />
+		<mapping class="fr.open.restau_resa.business.User" />
+	</session-factory>
+</hibernate-configuration>
