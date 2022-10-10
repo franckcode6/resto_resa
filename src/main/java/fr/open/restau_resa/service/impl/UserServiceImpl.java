@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.findById(id).orElse(null);
 	}
 
+	@Override
+	public User_ addUser(String firstName, String lastName, String phone, String email, String password) {
+		return userDao.save(new User_(firstName, lastName, phone, email, password));
+	}
+
 }

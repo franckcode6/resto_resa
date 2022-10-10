@@ -6,4 +6,6 @@ public interface UserService {
 
 	User_ getUser(long id);
 
+	User_ addUser(String firstName, String lastName, String phone, String email, String password);
+
 }
