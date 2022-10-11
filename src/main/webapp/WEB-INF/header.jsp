@@ -5,8 +5,8 @@
 			<h1>Resto-Resa</h1>
 		</a>
 		<nav>
-			<a href="/profil/reservations">Mes réservations</a> 
-			<a href="/profil" class="ms-3">Mon compte</a>
+			<a href="/profil">${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</a>
+			<a href="/profil/reservations"  class="ms-3">Mes réservations</a> 
 			<a href="/deconnexion" class="ms-3">Déconnexion</a>
 		</nav>
 	</div>
