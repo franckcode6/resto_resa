@@ -107,7 +107,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 	private void addProfessionnals() {
 		if (professionnalDao.count() == 0) {
-			professionnals.add(new Professionnal("Michel", "Cuillière", "0102030405", "michel@restaurant", "12345",
+			professionnals.add(new Professionnal("Michel", "Cuillière", "0102030405", "michel@restaurant.fr", "12345",
 					"55217863900132"));
 
 			for (int i = 0; i < 5; i++) {
