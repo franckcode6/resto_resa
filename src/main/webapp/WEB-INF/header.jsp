@@ -10,6 +10,7 @@
 			<a href="/profil">${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</a>
 			<a href="/profil/reservations"  class="ms-3">Mes réservations</a> 
 			</c:if>
+			
 			<c:if test="${sessionScope.professionnal ne null}">
 			<a href="/profil">${sessionScope.professionnal.firstName} ${sessionScope.professionnal.lastName}</a>
 			<a href="/profil/reservations"  class="ms-3">Mes restaurants</a> 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.open.restau_resa.business.Professionnal;
 import fr.open.restau_resa.business.User_;
 import fr.open.restau_resa.service.ProfessionnalService;
 import fr.open.restau_resa.service.UserService;
@@ -32,14 +33,16 @@ public class UserController {
 
 	@PostMapping("/connexion")
 	public ModelAndView userConnexionPost(@RequestParam(name = "EMAIL") String email,
-			@RequestParam(name = "MDP") String password, @RequestParam(name = "PRO?", required = false) boolean pro) {
+			@RequestParam(name = "MDP") String password) {
 
 		User_ user = userService.getUser(email, password);
 
+		Professionnal professionnal = professionnalService.getProfessionnal(email, password);
+
 		if (user == null) {
 			return new ModelAndView("redirect:/connexion");
-		} else if (pro) {
-			httpSession.setAttribute("professionnal", user);
+		} else if (professionnal != null) {
+			httpSession.setAttribute("professionnal", professionnal);
 			return new ModelAndView("redirect:/");
 		} else {
 			httpSession.setAttribute("customer", user);
