@@ -17,8 +17,7 @@
 	<%@include file="header.jsp"%>
 
 	<main class="container">
-		<h2 class="my-4">Bonjour ${professionnal.firstName}, voici vos
-			restaurants :</h2>
+		<h2 class="my-4">Liste des restaurants : </h2>
 
 		<div class="row  col-md-8 mx-auto">
 			<table class="table table-hover">
@@ -28,6 +27,7 @@
 						<th>Adresse</th>
 						<th>Email</th>
 						<th>Telephone</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,6 +38,10 @@
 							- ${restaurant.address.postalCode} ${restaurant.address.city}</td>
 							<td>${restaurant.email}</td>
 							<td>${restaurant.phone}</td>
+							<td>
+							<a a href="/details?id=${restaurant.id}"
+							class="btn btn-primary">Détails</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
