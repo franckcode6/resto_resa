@@ -1,5 +1,7 @@
 package fr.open.restau_resa.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -66,7 +68,7 @@ public class ProfessionnalController {
 			@RequestParam(name = "PHONE") String phone,
 			@RequestParam(name = "EMAIL") String email,
 			@RequestParam(name = "DESCRIPTION") String description,
-			@RequestParam(name = "TAG", required = false) Tag tag,
+			@RequestParam(name = "TAG", required = false) List<Tag> tags,
 			@RequestParam(name = "DISABLED", required = false) boolean disabled,
 			@RequestParam(name = "NOADDRESS") String noAddress,
 			@RequestParam(name = "ADDRESS") String address,
@@ -81,6 +83,10 @@ public class ProfessionnalController {
 		System.out.println(restaurantAddress);
 		
 		Restaurant restaurant = new Restaurant(name, phone, email, description, disabled, professionnal, restaurantAddress);
+		
+		if (tags != null) {
+			restaurant.setTags(tags);
+		}
 		
 		restaurantService.addRestaurant(restaurant);
 		

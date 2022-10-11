@@ -9,13 +9,17 @@
 			<c:if test="${sessionScope.customer ne null}">
 			<a href="/profil">${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</a>
 			<a href="/profil/reservations"  class="ms-3">Mes réservations</a> 
+			<a href="/deconnexion" class="ms-3">Déconnexion</a>
 			</c:if>
 			
 			<c:if test="${sessionScope.professionnal ne null}">
 			<a href="/professionnal">${sessionScope.professionnal.firstName} ${sessionScope.professionnal.lastName}</a>
 			<a href="/professionnal/restaurants" class="ms-3">Mes restaurants</a> 
-			</c:if>
 			<a href="/deconnexion" class="ms-3">Déconnexion</a>
+			</c:if>
+			<c:if test="${sessionScope.customer eq null && sessionScope.professionnal eq null}">
+			<a href="/connexion" class="ms-3">Connexion</a>
+			</c:if>
 		</nav>
 	</div>
 	<div id="background"></div>

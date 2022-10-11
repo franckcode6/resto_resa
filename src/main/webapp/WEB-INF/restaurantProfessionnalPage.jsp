@@ -19,7 +19,7 @@
 	<main class="container">
 		<h2 class="mt-4">Liste des restaurants : </h2>
 
-		<div class="row col-md-8 mx-auto">
+		<div class="row col-md-10 mx-auto">
 		<div>
 		<a href="/professionnal/restaurants/add" class="btn btn-danger mb-3 float-end">Nouveau restaurant</a>
 		</div>

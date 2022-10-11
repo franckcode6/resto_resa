@@ -42,7 +42,7 @@
 
 			<div class="mb-3">
 				<label for="tag_id" class="form-label">Tag</label> 
-				<select	name="TAG" class="form-select" id="tag_id">
+				<select	name="TAG" class="form-select" id="tag_id" multiple>
 					<option value="" selected disabled hidden="true">Ajouter
 						un tag?</option>
 					<c:forEach items="${tags}" var="tag">
