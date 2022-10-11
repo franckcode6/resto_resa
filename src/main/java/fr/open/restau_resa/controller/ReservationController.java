@@ -2,6 +2,8 @@ package fr.open.restau_resa.controller;
 
 import java.time.LocalDate;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +18,6 @@ import fr.open.restau_resa.service.OptionService;
 import fr.open.restau_resa.service.ReservationService;
 import fr.open.restau_resa.service.ReservationStateService;
 import fr.open.restau_resa.service.RestaurantService;
-import fr.open.restau_resa.service.UserService;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -27,7 +28,8 @@ public class ReservationController {
 	private final ReservationService reservationService;
 	private final RestaurantService restaurantService;
 	private final ReservationStateService reservationStateService;
-	private final UserService userService;
+
+	private final HttpSession httpSession;
 
 	@GetMapping("/reservation/restaurant")
 	public ModelAndView reservationGet(@RequestParam(name = "id") Long id) {
@@ -51,7 +53,7 @@ public class ReservationController {
 
 		LocalDate dateReservation = LocalDate.parse(date);
 		Restaurant restaurant = restaurantService.recupererRestaurant(restaurantId);
-		User_ customer = userService.getUser(1L);
+		User_ customer = (User_) httpSession.getAttribute("customer");
 
 		Reservation reservation = new Reservation(dateReservation, slot, customerAmount, restaurant, customer);
 
@@ -69,16 +71,5 @@ public class ReservationController {
 		reservationService.addReservation(reservation);
 
 		return new ModelAndView("redirect:/");
-	}
-
-	@GetMapping("/profil/reservations")
-	public ModelAndView userPageGet() {
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("user", userService.getUser(1L));
-		mav.addObject("reservations", reservationService.findAllUsersById(1L));
-
-		mav.setViewName("reservationsUserPage");
-		return mav;
 	}
 }

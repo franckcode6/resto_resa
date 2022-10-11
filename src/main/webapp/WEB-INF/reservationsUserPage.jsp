@@ -17,7 +17,7 @@
 	<%@include file="header.jsp"%>
 
 	<main class="container">
-		<h2 class="my-4">Bonjour ${user.firstName}, voici vos
+		<h2 class="my-4">Bonjour ${customer.firstName}, voici vos
 			réservations :</h2>
 
 		<div class="row  col-md-8 mx-auto">
@@ -32,14 +32,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${user.reservations}" var="reservation">
+					<c:forEach items="${customer.reservations}" var="reservation">
 						<tr class="table-light">
 							<th>${reservation.date}</th>
 							<td>${reservation.slot}</td>
 							<td>${reservation.restaurant.name}-
 								${reservation.restaurant.address.postalCode}
 								${reservation.restaurant.address.city}</td>
-							<td>${reservation.customersAmount}personnes</td>
+							<td>${reservation.customersAmount} personnes</td>
 							<td>${reservation.reservationState.state}</td>
 						</tr>
 					</c:forEach>

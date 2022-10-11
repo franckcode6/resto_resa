@@ -12,25 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+
+@Component
 public class CheckSessionFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		if (((HttpServletRequest) request).getRequestURI().startsWith("/admin")
-				&& ((HttpServletRequest) request).getSession().getAttribute("admin") == null) {
+		if (((HttpServletRequest) request).getRequestURI().startsWith("/professionnal")
+				&& ((HttpServletRequest) request).getSession().getAttribute("professionnal") == null) {
 			System.out.println("Pas de session");
 			((HttpServletResponse) response).sendRedirect("/");
 		} else if (((HttpServletRequest) request).getRequestURI().startsWith("/profil")
 				&& ((HttpServletRequest) request).getSession().getAttribute("customer") == null) {
 			System.out.println("Pas de session");
 			((HttpServletResponse) response).sendRedirect("/");
-		} else if (((HttpServletRequest) request).getRequestURI().startsWith("/professionnal")
-				&& ((HttpServletRequest) request).getSession().getAttribute("professionnal") == null) {
-			System.out.println("Pas de session");
-			((HttpServletResponse) response).sendRedirect("/");
-		} else {
+		}
+		else {
 			chain.doFilter(request, response);
 		}
 	}

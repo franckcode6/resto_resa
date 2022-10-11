@@ -41,9 +41,6 @@ public class UserController {
 		} else if (pro) {
 			httpSession.setAttribute("professionnal", user);
 			return new ModelAndView("redirect:/");
-		} else if (user.getEmail().equals("franck@test.fr")) {
-			httpSession.setAttribute("admin", user);
-			return new ModelAndView("redirect:/");
 		} else {
 			httpSession.setAttribute("customer", user);
 			return new ModelAndView("redirect:/");
@@ -95,12 +92,24 @@ public class UserController {
 	}
 
 	@GetMapping("/profil")
-	public ModelAndView userPageGet() {
+	public ModelAndView userProfilGet() {
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("user", userService.getUser(1L));
+		User_ user = (User_) httpSession.getAttribute("customer");
+		mav.addObject("customer", userService.getUser(user.getId()));
 
 		mav.setViewName("userPage");
+		return mav;
+	}
+
+	@GetMapping("/profil/reservations")
+	public ModelAndView userReservationsGet() {
+		ModelAndView mav = new ModelAndView();
+
+		User_ user = (User_) httpSession.getAttribute("customer");
+		mav.addObject("customer", userService.getUser(user.getId()));
+
+		mav.setViewName("reservationsUserPage");
 		return mav;
 	}
 }

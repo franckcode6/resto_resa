@@ -17,16 +17,16 @@
 	<%@include file="header.jsp"%>
 
 	<main class="container">
-		<h2 class="my-4">Bonjour ${user.firstName}</h2>
+		<h2 class="my-4">Bonjour ${customer.firstName}</h2>
 
 		<div class="row col-md-6 mx-auto py-2">
 			<div class="redSquare col-md-4 bg-danger bg-gradient"></div>
 			<ul class="col-md-8 bg-light py-3">
-				<li>Nom : ${user.lastName}</li>
-				<li>Prénom : ${user.firstName}</li>
-				<li>Adresse email : ${user.email}</li>
-				<li>Téléphone : ${user.phone}</li>
-				<li>Compte créé le : ${user.createdAt}</li>
+				<li>Nom : ${customer.lastName}</li>
+				<li>Prénom : ${customer.firstName}</li>
+				<li>Adresse email : ${customer.email}</li>
+				<li>Téléphone : ${customer.phone}</li>
+				<li>Compte créé le : ${customer.createdAt}</li>
 			</ul>
 		</div>
 	</main>
