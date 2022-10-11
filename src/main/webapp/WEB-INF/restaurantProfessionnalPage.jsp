@@ -17,9 +17,12 @@
 	<%@include file="header.jsp"%>
 
 	<main class="container">
-		<h2 class="my-4">Liste des restaurants : </h2>
+		<h2 class="mt-4">Liste des restaurants : </h2>
 
-		<div class="row  col-md-8 mx-auto">
+		<div class="row col-md-8 mx-auto">
+		<div>
+		<a href="/professionnal/restaurants/add" class="btn btn-danger mb-3 float-end">Nouveau restaurant</a>
+		</div>
 			<table class="table table-hover">
 				<thead class="table-dark">
 					<tr>
@@ -39,8 +42,10 @@
 							<td>${restaurant.email}</td>
 							<td>${restaurant.phone}</td>
 							<td>
-							<a a href="/details?id=${restaurant.id}"
+							<a href="/details?id=${restaurant.id}"
 							class="btn btn-primary">Détails</a>
+							<a href="#"
+							class="btn btn-warning">Modifier</a>
 							</td>
 						</tr>
 					</c:forEach>

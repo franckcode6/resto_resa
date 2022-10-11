@@ -10,4 +10,6 @@ public interface RestaurantService {
 
 	Restaurant recupererRestaurant(Long id);
 
+	Restaurant addRestaurant(Restaurant restaurant);
+
 }

@@ -45,15 +45,38 @@ public class Restaurant {
 
 	@ManyToOne
 	private Address address;
-	
+
 	@OneToMany(mappedBy = "restaurant")
 	private List<Reservation> reservations;
-	
+
 	@ManyToMany
 	private List<Tag> tags;
 
 	@OneToMany(mappedBy = "restaurant")
 	private List<Menu> menus;
+
+	public Restaurant(String name, String phone, String email, String description, boolean isDisabledFriendly,
+			Professionnal professionnal, Address address) {
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.description = description;
+		this.isDisabledFriendly = isDisabledFriendly;
+		this.professionnal = professionnal;
+		this.address = address;
+	}
+
+	public Restaurant(String name, String phone, String email, String description, boolean isDisabledFriendly,
+			String image, Professionnal professionnal, Address address) {
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.description = description;
+		this.isDisabledFriendly = isDisabledFriendly;
+		this.image = image;
+		this.professionnal = professionnal;
+		this.address = address;
+	}
 
 	public Restaurant(String name, String phone, String email, String description, boolean isDisabledFriendly,
 			String image, Professionnal professionnal, Address address, List<Tag> tags) {
