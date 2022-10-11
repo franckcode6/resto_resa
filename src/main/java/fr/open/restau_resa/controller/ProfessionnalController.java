@@ -15,6 +15,7 @@ import fr.open.restau_resa.business.Professionnal;
 import fr.open.restau_resa.business.Restaurant;
 import fr.open.restau_resa.business.Tag;
 import fr.open.restau_resa.service.AddressService;
+import fr.open.restau_resa.service.ProfessionnalService;
 import fr.open.restau_resa.service.RestaurantService;
 import fr.open.restau_resa.service.TagService;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ import lombok.AllArgsConstructor;
 public class ProfessionnalController {
 
 	private final AddressService addressService;
+	private final ProfessionnalService professionnalService;
 	private final RestaurantService restaurantService;
 	private final TagService tagService;
 	
@@ -45,7 +47,7 @@ public class ProfessionnalController {
 		ModelAndView mav = new ModelAndView();
 
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
-		mav.addObject("professionnal", professionnal);
+		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
 
 		mav.setViewName("restaurantProfessionnalPage");
 		return mav;

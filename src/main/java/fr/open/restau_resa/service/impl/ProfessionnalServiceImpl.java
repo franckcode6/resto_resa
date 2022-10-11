@@ -23,4 +23,9 @@ public class ProfessionnalServiceImpl implements ProfessionnalService {
 	public Professionnal getProfessionnal(String email, String password) {
 		return professionnalDao.findByEmailAndPassword(email, password);
 	}
+
+	@Override
+	public Professionnal getProfessionnal(Long id) {
+		return professionnalDao.findById(id).orElse(null);
+	}
 }

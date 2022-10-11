@@ -3,6 +3,8 @@ package fr.open.restau_resa.service;
 import fr.open.restau_resa.business.Professionnal;
 
 public interface ProfessionnalService {
+	
+	Professionnal getProfessionnal(Long id);
 
 	Professionnal getProfessionnal(String email, String password);
 	
