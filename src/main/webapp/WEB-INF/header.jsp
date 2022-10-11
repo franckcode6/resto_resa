@@ -12,8 +12,8 @@
 			</c:if>
 			
 			<c:if test="${sessionScope.professionnal ne null}">
-			<a href="/profil">${sessionScope.professionnal.firstName} ${sessionScope.professionnal.lastName}</a>
-			<a href="/profil/reservations"  class="ms-3">Mes restaurants</a> 
+			<a href="/professionnal">${sessionScope.professionnal.firstName} ${sessionScope.professionnal.lastName}</a>
+			<a href="/professionnal/restaurants" class="ms-3">Mes restaurants</a> 
 			</c:if>
 			<a href="/deconnexion" class="ms-3">Déconnexion</a>
 		</nav>

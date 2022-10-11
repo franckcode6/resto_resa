@@ -99,7 +99,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 
 		User_ user = (User_) httpSession.getAttribute("customer");
-		mav.addObject("customer", userService.getUser(user.getId()));
+		mav.addObject("customer", user);
 
 		mav.setViewName("userPage");
 		return mav;
@@ -110,7 +110,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 
 		User_ user = (User_) httpSession.getAttribute("customer");
-		mav.addObject("customer", userService.getUser(user.getId()));
+		mav.addObject("customer", user);
 
 		mav.setViewName("reservationsUserPage");
 		return mav;
