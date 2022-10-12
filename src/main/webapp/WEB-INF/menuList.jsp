@@ -24,7 +24,7 @@
 			<c:if test="${not empty restaurant.menus}">
 				<h3 class="mt-3">Plats à la carte :</h3>
 					<c:forEach items="${restaurant.menus}" var="menu">
-						<div class="card p-0 mx-auto my-2" style="width: 20rem;">
+						<div class="card p-0 m-3" style="width: 20rem;">
 							<img src="../images/${menu.img}" class="card-img-top" alt="menu">
 							<div class="card-body">
 								<h4 class="card-text">${menu.name}</h4>
@@ -33,6 +33,10 @@
 									<fmt:formatNumber type="number" maxFractionDigits="2"
 										value="${menu.price}" />
 									€
+								</p>
+								<p class="m-0">
+								<a href="#" class="me-2 btn-sm btn-warning">Modifier</a>
+								<a href="/professionnal/menu/delete?id=${menu.id}" class="btn-sm btn-danger">Supprimer</a>
 								</p>
 							</div>
 						</div>

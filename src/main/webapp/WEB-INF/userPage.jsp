@@ -26,7 +26,7 @@
 				<li>Prénom : ${customer.firstName}</li>
 				<li>Adresse email : ${customer.email}</li>
 				<li>Téléphone : ${customer.phone}</li>
-				<li>Compte créé le : ${customer.createdAt}</li>
+				<li>Compte créé le : ${customer}</li>
 			</ul>
 		</div>
 	</main>

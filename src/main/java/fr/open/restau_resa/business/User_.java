@@ -60,4 +60,9 @@ public class User_ {
 		this.email = email;
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return createdAt.getDayOfMonth() + "/" + createdAt.getMonthValue() + "/" + createdAt.getYear();
+	}
 }

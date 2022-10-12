@@ -29,4 +29,9 @@ public class Professionnal extends User_ {
 		super(firstName, lastName, phone, email, password);
 		this.siret = siret;
 	}
+	
+	@Override
+	public String toString() {
+		return createdAt.getDayOfMonth() + "/" + createdAt.getMonthValue() + "/" + createdAt.getYear();
+	}
 }

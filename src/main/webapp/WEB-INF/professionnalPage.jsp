@@ -28,7 +28,7 @@
 				<li>Adresse email : ${professionnal.email}</li>
 				<li>Téléphone : ${professionnal.phone}</li>
 				<li>Siret : ${professionnal.siret}</li>
-				<li>Compte créé le : ${professionnal.createdAt}</li>
+				<li>Compte créé le : ${professionnal}</li>
 			</ul>
 		</div>
 	</main>

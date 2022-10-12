@@ -6,4 +6,6 @@ public interface MenuService {
 
 	Menu addMenu(Menu menu);
 
+	void deleteMenu(Long id);
+
 }

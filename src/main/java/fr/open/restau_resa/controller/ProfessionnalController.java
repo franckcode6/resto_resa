@@ -188,6 +188,14 @@ public class ProfessionnalController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 	
+	@GetMapping("/professionnal/menu/delete")
+	public ModelAndView deleteMenutGet(@RequestParam(name = "id") Long id) {
+
+		menuService.deleteMenu(id);
+
+		return new ModelAndView("redirect:/professionnal/restaurants");
+	}
+	
 	/**
 	 * Method to save image file
 	 * 
