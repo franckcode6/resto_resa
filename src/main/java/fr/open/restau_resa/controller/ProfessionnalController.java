@@ -174,5 +174,25 @@ public class ProfessionnalController {
 
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
+	
+	@GetMapping("/professionnal/menu")
+	public ModelAndView menuRestaurantGet(@RequestParam(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
+		mav.setViewName("menuList");
+
+		return mav;
+	}
+	
+	@GetMapping("/professionnal/menu/add")
+	public ModelAndView menuRestaurantAddGet(@RequestParam(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
+		mav.setViewName("menuAdd");
+
+		return mav;
+	}
 
 }

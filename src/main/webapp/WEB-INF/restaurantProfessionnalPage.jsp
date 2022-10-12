@@ -44,6 +44,8 @@
 							<td>
 							<a href="/details?id=${restaurant.id}"
 							class="btn btn-primary">Détails</a>
+							<a href="/professionnal/menu?id=${restaurant.id}"
+							class="btn btn-success">Menu</a>
 							<a href="/professionnal/restaurants/modify?id=${restaurant.id}"
 							class="btn btn-warning">Modifier</a>
 							<a href="/professionnal/restaurants/delete?id=${restaurant.id}"
