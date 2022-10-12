@@ -2,6 +2,7 @@ package fr.open.restau_resa.business;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,13 +32,13 @@ public class Address {
 
 	@NotBlank
 	private String postalCode;
-	
+
 	@NotBlank
 	private String City;
 
-	@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "address", cascade = CascadeType.REMOVE)
 	private List<Restaurant> restraurants;
-	
+
 	public Address(String noAddress, String address, String postalCode, String city) {
 		this.noAddress = noAddress;
 		this.address = address;

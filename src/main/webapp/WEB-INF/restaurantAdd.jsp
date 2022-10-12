@@ -18,7 +18,7 @@
 	<main class="container">
 		<h2 class="my-4">${sessionScope.professionnal.firstName} ${sessionScope.professionnal.lastName} - Nouveau restaurant</h2>
 
-		<form method="post"
+		<form method="post" enctype="multipart/form-data"
 			class="mx-auto shadow-sm mt-2 mb-5 p-4 row col-md-6 ">
 			<div class="mb-3">
 				<label for="name" class="form-label">Nom</label> 
@@ -75,10 +75,15 @@
 				<label for="city" class="form-label">Ville</label>
 				<input class="form-control" id="city" name="CITY">
 			</div>
+			
+			<div class="mb-4">
+				<label for="image" class="form-label">Téléverser une image</label>
+				<input type="file" name="IMAGE" accept="image" placeholder="URL" class="form-control">
+			</div>
 
-			<div>
+			<div class="mb-3">
 				<input type="submit" value="Ajouter" class="btn btn-success me-2">
-				<a href="/" class="btn btn-secondary">Retour à la liste</a>
+				<a href="/professionnal/restaurants" class="btn btn-secondary">Retour à la liste</a>
 			</div>
 		</form>
 	</main>

@@ -2,6 +2,7 @@ package fr.open.restau_resa.business;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,7 +53,7 @@ public class Restaurant {
 	@ManyToMany
 	private List<Tag> tags;
 
-	@OneToMany(mappedBy = "restaurant")
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.REMOVE)
 	private List<Menu> menus;
 
 	public Restaurant(String name, String phone, String email, String description, boolean isDisabledFriendly,

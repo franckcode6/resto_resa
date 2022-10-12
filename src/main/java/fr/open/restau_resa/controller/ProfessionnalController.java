@@ -1,5 +1,11 @@
 package fr.open.restau_resa.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.open.restau_resa.business.Address;
@@ -23,6 +30,8 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class ProfessionnalController {
+	
+	protected final static String IMAGE_FOLDER = "src/main/Webapp/images/";
 
 	private final AddressService addressService;
 	private final ProfessionnalService professionnalService;
@@ -75,16 +84,23 @@ public class ProfessionnalController {
 			@RequestParam(name = "NOADDRESS") String noAddress,
 			@RequestParam(name = "ADDRESS") String address,
 			@RequestParam(name = "POSTALCODE") String postalCode,
-			@RequestParam(name = "CITY") String city) {
+			@RequestParam(name = "CITY") String city,
+			@RequestParam(name = "IMAGE", required = false) MultipartFile multipartFile) throws IOException {
 		
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
 		Address restaurantAddress = new Address(noAddress, address, postalCode, city);
 		
 		addressService.addAddress(restaurantAddress);
 		
-		System.out.println(restaurantAddress);
-		
 		Restaurant restaurant = new Restaurant(name, phone, email, description, disabled, professionnal, restaurantAddress);
+		
+		System.out.println(multipartFile);
+		String image = multipartFile.getOriginalFilename();
+		
+		if (image != "") {
+			saveFile(image, multipartFile);
+			restaurant.setImage(image);
+		}
 		
 		if (tags != null) {
 			restaurant.setTags(tags);
@@ -94,4 +110,35 @@ public class ProfessionnalController {
 		
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
+	
+	/**
+	 * Method to save image file
+	 * @param nom
+	 * @param multipartFile
+	 * @throws IOException
+	 */
+	protected static void saveFile(String nom, MultipartFile multipartFile) throws IOException {
+		Path chemin = Paths.get(IMAGE_FOLDER);
+
+		if (!Files.exists(chemin)) {
+			Files.createDirectories(chemin);
+		}
+
+		try (InputStream inputStream = multipartFile.getInputStream()) {
+			Path cheminFichier = chemin.resolve(nom);
+			System.out.println(cheminFichier);
+			Files.copy(inputStream, cheminFichier, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException ioe) {
+			throw new IOException("Erreur d'écriture : " + nom, ioe);
+		}
+	}
+	
+	@GetMapping("/professionnal/restaurants/delete")
+	public ModelAndView deleteRestaurantGet(@RequestParam(name = "id") Long id) {
+		
+		restaurantService.deleteRestaurant(id);
+		
+		return new ModelAndView("redirect:/professionnal/restaurants");
+	}
+	
 }

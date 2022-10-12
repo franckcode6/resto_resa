@@ -29,7 +29,7 @@
 					<li><strong>Adresse : </strong>${restaurant.address.noAddress}
 						${restaurant.address.address} - ${restaurant.address.postalCode}
 						${restaurant.address.city}</li>
-					<li>${restaurant.description}</li>
+					<li><em>${restaurant.description}</em></li>
 					<li><strong>Téléphone : </strong>${restaurant.phone}</li>
 					<li><strong>Email : </strong>${restaurant.email}</li>
 					<c:forEach items="${restaurant.tags}" var="tag">

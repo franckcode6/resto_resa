@@ -46,6 +46,8 @@
 							class="btn btn-primary">Détails</a>
 							<a href="#"
 							class="btn btn-warning">Modifier</a>
+							<a href="/professionnal/restaurants/delete?id=${restaurant.id}"
+							class="btn btn-danger">Supprimer</a>
 							</td>
 						</tr>
 					</c:forEach>
