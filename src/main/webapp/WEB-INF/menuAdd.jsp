@@ -34,7 +34,7 @@
 
 			<div class="mb-3">
 				<label for="price" class="form-label">Prix</label> <input
-					type="number" id="price" name="PRICE" class="form-control">
+					type="text" id="price" name="PRICE" class="form-control">
 			</div>
 
 			<div class="mb-4">
@@ -45,7 +45,7 @@
 
 			<div class="mb-3">
 				<input type="submit" value="Ajouter" class="btn btn-success me-2">
-				<a href="/professionnal/restaurants" class="btn btn-secondary">Retour
+				<a href="/professionnal/menu?id=${restaurant.id}" class="btn btn-secondary">Retour
 					à la liste</a>
 			</div>
 		</form>

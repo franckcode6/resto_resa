@@ -1,4 +1,5 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,22 +20,23 @@
 	<main class="container">
 		<h2 class="my-4">- ${restaurant.name} -</h2>
 
-		<section id="detailsRestaurant" class="row mb-5 mx-auto">
+		<section id="detailsRestaurant" class="row mb-5 mx-auto col-md-12">
 			<c:if test="${not empty restaurant.menus}">
 				<h3 class="mt-3">Plats à la carte :</h3>
-				<ul class="d-flex">
 					<c:forEach items="${restaurant.menus}" var="menu">
-						<div class="card me-3" style="width: 20rem;">
+						<div class="card p-0 mx-auto my-2" style="width: 20rem;">
 							<img src="../images/${menu.img}" class="card-img-top" alt="menu">
 							<div class="card-body">
-								<h4>${menu.name}</h4>
+								<h4 class="card-text">${menu.name}</h4>
 								<p class="card-text">${menu.description}.
-									<br> ${menu.price} €
+									<br>
+									<fmt:formatNumber type="number" maxFractionDigits="2"
+										value="${menu.price}" />
+									€
 								</p>
 							</div>
 						</div>
 					</c:forEach>
-				</ul>
 			</c:if>
 			<a href="/professionnal/menu/add?id=${restaurant.id}" class="btn btn-success">Ajouter un menu</a>
 		</section>

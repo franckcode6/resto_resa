@@ -18,10 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.open.restau_resa.business.Address;
+import fr.open.restau_resa.business.Menu;
 import fr.open.restau_resa.business.Professionnal;
 import fr.open.restau_resa.business.Restaurant;
 import fr.open.restau_resa.business.Tag;
 import fr.open.restau_resa.service.AddressService;
+import fr.open.restau_resa.service.MenuService;
 import fr.open.restau_resa.service.ProfessionnalService;
 import fr.open.restau_resa.service.RestaurantService;
 import fr.open.restau_resa.service.TagService;
@@ -34,6 +36,7 @@ public class ProfessionnalController {
 	protected final static String IMAGE_FOLDER = "src/main/Webapp/images/";
 
 	private final AddressService addressService;
+	private final MenuService menuService;
 	private final ProfessionnalService professionnalService;
 	private final RestaurantService restaurantService;
 	private final TagService tagService;
@@ -109,40 +112,6 @@ public class ProfessionnalController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 
-	/**
-	 * Method to save image file
-	 * 
-	 * @param nom
-	 * @param multipartFile
-	 * @throws IOException
-	 */
-	protected static void saveFile(String nom, MultipartFile multipartFile) throws IOException {
-		Path chemin = Paths.get(IMAGE_FOLDER);
-
-		if (!Files.exists(chemin)) {
-			Files.createDirectories(chemin);
-		}
-
-		try (InputStream inputStream = multipartFile.getInputStream()) {
-			Path cheminFichier = chemin.resolve(nom);
-			System.out.println(cheminFichier);
-			Files.copy(inputStream, cheminFichier, StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException ioe) {
-			throw new IOException("Erreur d'écriture : " + nom, ioe);
-		}
-	}
-
-	@GetMapping("/professionnal/restaurants/modify")
-	public ModelAndView modifyRestaurantGet(@RequestParam(name = "id") Long id) {
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
-		mav.addObject("tags", tagService.getAllTags());
-		mav.setViewName("restaurantModify");
-
-		return mav;
-	}
-
 	@PostMapping("/professionnal/restaurants/modify")
 	public ModelAndView restaurantProfessionnalModifyPagePost(@RequestParam(name = "id") Long id,
 			@RequestParam(name = "NAME") String name, @RequestParam(name = "PHONE") String phone,
@@ -194,5 +163,62 @@ public class ProfessionnalController {
 
 		return mav;
 	}
+	
+	@PostMapping("/professionnal/menu/add")
+	public ModelAndView menuProfessionnalAddPagePost(@RequestParam(name = "id") Long id,
+			@RequestParam(name = "NAME") String name,
+			@RequestParam(name = "DESCRIPTION") String description,
+			@RequestParam(name = "PRICE") String price,
+			@RequestParam(name = "IMAGE", required = false) MultipartFile multipartFile) throws IOException {
 
+		float priceFloat = Float.parseFloat(price);
+		Restaurant restaurant = restaurantService.recupererRestaurant(id);
+		Menu menu = new Menu(name, description, priceFloat, restaurant);
+
+		System.out.println(multipartFile);
+		String image = multipartFile.getOriginalFilename();
+
+		if (image != "") {
+			saveFile(image, multipartFile);
+			menu.setImg(image);
+		}
+
+		menuService.addMenu(menu);
+
+		return new ModelAndView("redirect:/professionnal/restaurants");
+	}
+	
+	/**
+	 * Method to save image file
+	 * 
+	 * @param nom
+	 * @param multipartFile
+	 * @throws IOException
+	 */
+	protected static void saveFile(String nom, MultipartFile multipartFile) throws IOException {
+		Path chemin = Paths.get(IMAGE_FOLDER);
+
+		if (!Files.exists(chemin)) {
+			Files.createDirectories(chemin);
+		}
+
+		try (InputStream inputStream = multipartFile.getInputStream()) {
+			Path cheminFichier = chemin.resolve(nom);
+			System.out.println(cheminFichier);
+			Files.copy(inputStream, cheminFichier, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException ioe) {
+			throw new IOException("Erreur d'écriture : " + nom, ioe);
+		}
+	}
+
+	@GetMapping("/professionnal/restaurants/modify")
+	public ModelAndView modifyRestaurantGet(@RequestParam(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
+		mav.addObject("tags", tagService.getAllTags());
+		mav.setViewName("restaurantModify");
+
+		return mav;
+	}
 }
