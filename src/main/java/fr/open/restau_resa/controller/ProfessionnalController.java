@@ -95,7 +95,6 @@ public class ProfessionnalController {
 		Restaurant restaurant = new Restaurant(name, phone, email, description, disabled, professionnal,
 				restaurantAddress);
 
-		System.out.println(multipartFile);
 		String image = multipartFile.getOriginalFilename();
 
 		if (image != "") {
@@ -112,6 +111,17 @@ public class ProfessionnalController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 
+	@GetMapping("/professionnal/restaurants/modify")
+	public ModelAndView modifyRestaurantGet(@RequestParam(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
+		mav.addObject("tags", tagService.getAllTags());
+		mav.setViewName("restaurantModify");
+
+		return mav;
+	}
+
 	@PostMapping("/professionnal/restaurants/modify")
 	public ModelAndView restaurantProfessionnalModifyPagePost(@RequestParam(name = "id") Long id,
 			@RequestParam(name = "NAME") String name, @RequestParam(name = "PHONE") String phone,
@@ -122,7 +132,6 @@ public class ProfessionnalController {
 			@RequestParam(name = "POSTALCODE") String postalCode, @RequestParam(name = "CITY") String city)
 			throws IOException {
 
-		System.out.println(id);
 		Restaurant restaurant = restaurantService.recupererRestaurant(id);
 		Address restaurantAddress = addressService.findById(restaurant.getAddress().getId());
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
@@ -143,7 +152,7 @@ public class ProfessionnalController {
 
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
-	
+
 	@GetMapping("/professionnal/menu")
 	public ModelAndView menuRestaurantGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
@@ -153,7 +162,7 @@ public class ProfessionnalController {
 
 		return mav;
 	}
-	
+
 	@GetMapping("/professionnal/menu/add")
 	public ModelAndView menuRestaurantAddGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
@@ -163,11 +172,10 @@ public class ProfessionnalController {
 
 		return mav;
 	}
-	
+
 	@PostMapping("/professionnal/menu/add")
 	public ModelAndView menuProfessionnalAddPagePost(@RequestParam(name = "id") Long id,
-			@RequestParam(name = "NAME") String name,
-			@RequestParam(name = "DESCRIPTION") String description,
+			@RequestParam(name = "NAME") String name, @RequestParam(name = "DESCRIPTION") String description,
 			@RequestParam(name = "PRICE") String price,
 			@RequestParam(name = "IMAGE", required = false) MultipartFile multipartFile) throws IOException {
 
@@ -187,7 +195,28 @@ public class ProfessionnalController {
 
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
-	
+
+	@GetMapping("/professionnal/menu/modify")
+	public ModelAndView modifyMenuGet(@RequestParam(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("menu", menuService.getMenu(id));
+		mav.setViewName("menuModify");
+
+		return mav;
+	}
+
+	@PostMapping("/professionnal/menu/modify")
+	public ModelAndView modifyMenuPost(@RequestParam(name = "id") Long id, @RequestParam(name = "NAME") String name,
+			@RequestParam(name = "DESCRIPTION") String description, @RequestParam(name = "PRICE") String price) {
+
+		float priceFloat = Float.parseFloat(price);
+
+		menuService.modifyMenu(id, name, description, priceFloat);
+
+		return new ModelAndView("redirect:/professionnal/restaurants");
+	}
+
 	@GetMapping("/professionnal/menu/delete")
 	public ModelAndView deleteMenutGet(@RequestParam(name = "id") Long id) {
 
@@ -195,7 +224,7 @@ public class ProfessionnalController {
 
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
-	
+
 	/**
 	 * Method to save image file
 	 * 
@@ -217,16 +246,5 @@ public class ProfessionnalController {
 		} catch (IOException ioe) {
 			throw new IOException("Erreur d'écriture : " + nom, ioe);
 		}
-	}
-
-	@GetMapping("/professionnal/restaurants/modify")
-	public ModelAndView modifyRestaurantGet(@RequestParam(name = "id") Long id) {
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
-		mav.addObject("tags", tagService.getAllTags());
-		mav.setViewName("restaurantModify");
-
-		return mav;
 	}
 }

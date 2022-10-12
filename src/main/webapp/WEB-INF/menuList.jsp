@@ -35,7 +35,7 @@
 									€
 								</p>
 								<p class="m-0">
-								<a href="#" class="me-2 btn-sm btn-warning">Modifier</a>
+								<a href="/professionnal/menu/modify?id=${menu.id}" class="me-2 btn-sm btn-warning">Modifier</a>
 								<a href="/professionnal/menu/delete?id=${menu.id}" class="btn-sm btn-danger">Supprimer</a>
 								</p>
 							</div>
