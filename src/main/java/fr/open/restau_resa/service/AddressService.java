@@ -6,4 +6,8 @@ public interface AddressService {
 
 	Address addAddress(Address address);
 
+	Address findById(Long id);
+
+	Address modifyAddress(Long id, String noAddress, String address, String postalCode, String city);
+
 }

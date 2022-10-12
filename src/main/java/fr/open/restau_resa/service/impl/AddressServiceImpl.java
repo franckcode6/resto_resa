@@ -14,7 +14,23 @@ public class AddressServiceImpl implements AddressService {
 	private final AddressDao addressDao;
 
 	@Override
+	public Address findById(Long id) {
+		return addressDao.findById(id).orElse(null);
+	}
+
+	@Override
 	public Address addAddress(Address address) {
 		return addressDao.save(address);
+	}
+
+	@Override
+	public Address modifyAddress(Long id, String noAddress, String address, String postalCode, String city) {
+		Address addressRestaurant = addressDao.findById(id).orElse(null);
+		addressRestaurant.setNoAddress(noAddress);
+		addressRestaurant.setAddress(address);
+		addressRestaurant.setPostalCode(postalCode);
+		addressRestaurant.setCity(city);
+
+		return addressDao.save(addressRestaurant);
 	}
 }
