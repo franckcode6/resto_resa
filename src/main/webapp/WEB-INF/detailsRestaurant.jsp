@@ -45,6 +45,7 @@
 
 			<c:if test="${not empty restaurant.menus}">
 				<h3 class="mt-3">Plats à la carte :</h3>
+				<div class="d-flex justify-content-center flex-wrap">
 				<c:forEach items="${restaurant.menus}" var="menu">
 					<div class="card p-0 m-3" style="width: 20rem;">
 						<img src="../images/${menu.img}" class="card-img-top" alt="menu">
@@ -59,6 +60,7 @@
 						</div>
 					</div>
 				</c:forEach>
+				</div>
 			</c:if>
 		</section>
 	</main>

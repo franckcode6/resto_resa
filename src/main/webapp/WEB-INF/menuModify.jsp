@@ -17,7 +17,7 @@
 	<%@include file="header.jsp"%>
 
 	<main class="container">
-		<h2 class="my-4">${menu.name}- modification</h2>
+		<h2 class="my-4">${menu.name} - modification</h2>
 
 		<form method="post" enctype="multipart/form-data"
 			class="mx-auto shadow-sm mt-2 mb-5 p-4 row col-md-6 ">
