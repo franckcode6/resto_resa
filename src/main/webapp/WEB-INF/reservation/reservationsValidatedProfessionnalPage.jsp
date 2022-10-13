@@ -20,8 +20,8 @@
 		<c:forEach items="${professionnal.restaurants}" var="restaurant">
 			<div class="row col-md-8 mx-auto">
 				<h3>${restaurant.name}</h3>
-				<table class="table table-hover">
-					<thead class="table-dark">
+				<table class="table table-hover mb-3">
+					<thead class="table-success">
 						<tr>
 							<th>Date</th>
 							<th>Heure</th>

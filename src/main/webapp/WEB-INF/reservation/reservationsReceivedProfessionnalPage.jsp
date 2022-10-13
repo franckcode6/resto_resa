@@ -21,7 +21,7 @@
 			<div class="row col-md-8 mx-auto">
 				<h3>${restaurant.name}</h3>
 				<table class="table table-hover">
-					<thead class="table-dark">
+					<thead class="table-warning">
 						<tr>
 							<th>Date</th>
 							<th>Heure</th>
