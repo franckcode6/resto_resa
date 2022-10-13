@@ -23,7 +23,7 @@
 		<section id="detailsRestaurant" class="row mb-5 mx-auto">
 			<img alt="" src="../images/${restaurant.image}"
 				class="col-md-4 restoPic">
-			<article class="col-md-8 py-5">
+			<article class="col-md-8 py-3">
 				<ul>
 					<li><strong>Propriétaire : </strong>${restaurant.professionnal.firstName}
 						${restaurant.professionnal.lastName}</li>
@@ -36,7 +36,7 @@
 					<c:forEach items="${restaurant.tags}" var="tag">
 						<li class="tag">${tag.name}</li>
 					</c:forEach>
-					<c:if test="${essionScope.customer ne null}">
+					<c:if test="${sessionScope.customer ne null}">
 						<li><a href="/reservation/restaurant?id=${restaurant.id}"
 							class="btn btn-danger mt-3">Réservez!</a></li>
 					</c:if>
