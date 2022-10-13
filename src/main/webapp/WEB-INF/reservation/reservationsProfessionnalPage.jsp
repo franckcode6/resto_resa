@@ -19,7 +19,7 @@
 
 		<c:forEach items="${professionnal.restaurants}" var="restaurant">
 			<div class="row col-md-8 mx-auto">
-			<h3>${restaurant.name}</h3>
+				<h3>${restaurant.name}</h3>
 				<table class="table table-hover">
 					<thead class="table-dark">
 						<tr>
@@ -32,18 +32,21 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${restaurant.reservations}" var="reservation">
-							<tr class="table-light">
-								<th>${reservation.date}</th>
-								<td>${reservation.slot}</td>
-								<td>${reservation.restaurant.name} -
-									${reservation.restaurant.address.postalCode}
-									${reservation.restaurant.address.city}</td>
-								<td>${reservation.customersAmount} personnes</td>
-								<td>
-									<a href="/professionnal/reservations/validate?id=${reservation.id}" class="btn btn-success">Valider</a>
-									<a href="/professionnal/reservations/cancel?id=${reservation.id}" class="btn btn-danger">Annuler</a>
-								</td>
-							</tr>
+							<c:if test="${reservation.reservationState.id eq 1}">
+								<tr class="table-light">
+									<th>${reservation.date}</th>
+									<td>${reservation.slot}</td>
+									<td>${reservation.restaurant.name}-
+										${reservation.restaurant.address.postalCode}
+										${reservation.restaurant.address.city}</td>
+									<td>${reservation.customersAmount}personnes</td>
+									<td><a
+										href="/professionnal/reservations/validate?id=${reservation.id}"
+										class="btn btn-success">Valider</a> <a
+										href="/professionnal/reservations/cancel?id=${reservation.id}"
+										class="btn btn-danger">Annuler</a></td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>

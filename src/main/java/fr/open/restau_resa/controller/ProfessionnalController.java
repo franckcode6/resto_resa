@@ -180,16 +180,19 @@ public class ProfessionnalController {
 		ModelAndView mav = new ModelAndView();
 
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
-		mav.addObject("professionnal", professionnal);
-		
-		//mav.addObject("reservations", reservationService.findAllByProfessionnalId(professionnal.getId()));
+
+		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
+
+		// mav.addObject("reservations",
+		// reservationService.findAllByProfessionnalId(professionnal.getId()));
 
 		mav.setViewName("reservation/reservationsProfessionnalPage");
 		return mav;
 	}
-	
+
 	/**
 	 * Validate the reservation in pending
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -200,9 +203,10 @@ public class ProfessionnalController {
 
 		return new ModelAndView("redirect:/professionnal/reservations");
 	}
-	
+
 	/**
 	 * Cancel the reservation in pending
+	 * 
 	 * @param id
 	 * @return
 	 */
