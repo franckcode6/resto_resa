@@ -30,6 +30,7 @@ public class Professionnal extends User_ {
 		this.siret = siret;
 	}
 	
+	//Modified toString() to only display a proper inscription date
 	@Override
 	public String toString() {
 		return createdAt.getDayOfMonth() + "/" + createdAt.getMonthValue() + "/" + createdAt.getYear();

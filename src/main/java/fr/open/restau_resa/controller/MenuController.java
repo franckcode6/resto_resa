@@ -25,22 +25,34 @@ public class MenuController {
 	private final MenuService menuService;
 	private final RestaurantService restaurantService;
 
+	/**
+	 * Menu list by restaurant
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/professionnal/menu")
 	public ModelAndView menuRestaurantGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
-		mav.setViewName("menuList");
+		mav.setViewName("menu/menuList");
 
 		return mav;
 	}
 
+	/**
+	 * Add a menu to a restaurant
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/professionnal/menu/add")
 	public ModelAndView menuRestaurantAddGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
-		mav.setViewName("menuAdd");
+		mav.setViewName("menu/menuAdd");
 
 		return mav;
 	}
@@ -68,12 +80,18 @@ public class MenuController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 
+	/**
+	 * Modify a menu
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/professionnal/menu/modify")
 	public ModelAndView modifyMenuGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("menu", menuService.getMenu(id));
-		mav.setViewName("menuModify");
+		mav.setViewName("menu/menuModify");
 
 		return mav;
 	}
@@ -89,6 +107,12 @@ public class MenuController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 
+	/**
+	 * Delete a menu
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/professionnal/menu/delete")
 	public ModelAndView deleteMenutGet(@RequestParam(name = "id") Long id) {
 

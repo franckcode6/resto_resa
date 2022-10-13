@@ -14,23 +14,34 @@ public class RestaurantController {
 
 	private final RestaurantService restaurantService;
 
+	/**
+	 * Index page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/")
 	public ModelAndView restaurantsGet() {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("restaurants", restaurantService.recupererRestaurants());
 
-		mav.setViewName("restaurantsList");
+		mav.setViewName("restaurant/restaurantsList");
 
 		return mav;
 	}
 
+	/**
+	 * Restaurant details
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/details")
 	public ModelAndView restaurantDetailsGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
-		mav.setViewName("detailsRestaurant");
+		mav.setViewName("restaurant/restaurantDetails");
 
 		return mav;
 	}

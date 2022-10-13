@@ -10,12 +10,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<style>
-<%@include file="style/style.css"%>
-</style>
+<link href="${pageContext.request.contextPath}/style/style.css"
+	type="text/css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="../components/header.jsp"%>
 
 	<main class="container">
 		<h2 class="my-4">- ${restaurant.name} -</h2>
@@ -46,24 +45,24 @@
 			<c:if test="${not empty restaurant.menus}">
 				<h3 class="mt-3">Plats à la carte :</h3>
 				<div class="d-flex justify-content-center flex-wrap">
-				<c:forEach items="${restaurant.menus}" var="menu">
-					<div class="card p-0 m-3" style="width: 20rem;">
-						<img src="../images/${menu.img}" class="card-img-top" alt="menu">
-						<div class="card-body">
-							<h4>${menu.name}</h4>
-							<p class="card-text">${menu.description}.
-								<br>
-								<fmt:formatNumber type="number" maxFractionDigits="2"
-									value="${menu.price}" />
-								€
-							</p>
+					<c:forEach items="${restaurant.menus}" var="menu">
+						<div class="card p-0 m-3" style="width: 20rem;">
+							<img src="../images/${menu.img}" class="card-img-top" alt="menu">
+							<div class="card-body">
+								<h4>${menu.name}</h4>
+								<p class="card-text">${menu.description}.
+									<br>
+									<fmt:formatNumber type="number" maxFractionDigits="2"
+										value="${menu.price}" />
+									€
+								</p>
+							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
 				</div>
 			</c:if>
 		</section>
 	</main>
-	<%@include file="footer.jsp"%>
+	<%@include file="../components/footer.jsp"%>
 </body>
 </html>

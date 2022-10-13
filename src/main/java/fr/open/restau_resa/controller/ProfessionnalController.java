@@ -36,6 +36,10 @@ public class ProfessionnalController {
 
 	private final HttpSession httpSession;
 
+	/**
+	 * Show the professionnal's profil
+	 * @return
+	 */
 	@GetMapping("/professionnal")
 	public ModelAndView professionnalPageGet() {
 		ModelAndView mav = new ModelAndView();
@@ -43,10 +47,14 @@ public class ProfessionnalController {
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
 		mav.addObject("professionnal", professionnal);
 
-		mav.setViewName("professionnalPage");
+		mav.setViewName("user/professionnalPage");
 		return mav;
 	}
 
+	/**
+	 * Show the professionnal's restaurants
+	 * @return
+	 */
 	@GetMapping("/professionnal/restaurants")
 	public ModelAndView restaurantProfessionnalPageGet() {
 		ModelAndView mav = new ModelAndView();
@@ -54,10 +62,14 @@ public class ProfessionnalController {
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
 		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
 
-		mav.setViewName("restaurantProfessionnalPage");
+		mav.setViewName("restaurant/restaurantProfessionnalPage");
 		return mav;
 	}
 
+	/**
+	 * Restaurant adding form
+	 * @return
+	 */
 	@GetMapping("/professionnal/restaurants/add")
 	public ModelAndView restaurantProfessionnalAddPageGet() {
 		ModelAndView mav = new ModelAndView();
@@ -66,7 +78,7 @@ public class ProfessionnalController {
 		mav.addObject("professionnal", professionnal);
 		mav.addObject("tags", tagService.getAllTags());
 
-		mav.setViewName("restaurantAdd");
+		mav.setViewName("restaurant/restaurantAdd");
 		return mav;
 	}
 
@@ -90,6 +102,7 @@ public class ProfessionnalController {
 
 		String image = multipartFile.getOriginalFilename();
 
+		//If image, use the savefileService to upaload it
 		if (image != "") {
 			savefileService.saveFile(image, multipartFile);
 			restaurant.setImage(image);
@@ -104,13 +117,18 @@ public class ProfessionnalController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 
+	/**
+	 * Modify the restaurants informations
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/professionnal/restaurants/modify")
 	public ModelAndView modifyRestaurantGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
 		mav.addObject("tags", tagService.getAllTags());
-		mav.setViewName("restaurantModify");
+		mav.setViewName("restaurant/restaurantModify");
 
 		return mav;
 	}

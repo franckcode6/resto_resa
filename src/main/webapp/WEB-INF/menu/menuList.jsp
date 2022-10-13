@@ -10,12 +10,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<style>
-<%@include file="style/style.css"%>
-</style>
+<link href="${pageContext.request.contextPath}/style/style.css"
+	type="text/css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="../components/header.jsp"%>
 
 	<main class="container">
 		<h2 class="my-4">- ${restaurant.name} -</h2>
@@ -49,6 +48,6 @@
 				class="btn btn-success">Ajouter un menu</a>
 		</section>
 	</main>
-	<%@include file="footer.jsp"%>
+	<%@include file="../components/footer.jsp"%>
 </body>
 </html>

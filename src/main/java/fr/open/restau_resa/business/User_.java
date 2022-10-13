@@ -61,6 +61,7 @@ public class User_ {
 		this.password = password;
 	}
 
+	//Modified toString() to only display a proper inscription date
 	@Override
 	public String toString() {
 		return createdAt.getDayOfMonth() + "/" + createdAt.getMonthValue() + "/" + createdAt.getYear();

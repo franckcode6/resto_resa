@@ -27,7 +27,7 @@ public class UserController {
 	public ModelAndView userConnexionGet() {
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("connexion");
+		mav.setViewName("user/connexion");
 		return mav;
 	}
 
@@ -61,7 +61,7 @@ public class UserController {
 	public ModelAndView userInscriptionGet() {
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("inscription");
+		mav.setViewName("user/inscription");
 		return mav;
 	}
 
@@ -75,6 +75,10 @@ public class UserController {
 		return new ModelAndView("redirect:/connexion");
 	}
 
+	/**
+	 * Inscription for professionnals
+	 * @return
+	 */
 	@GetMapping("/inscription/pro")
 	public ModelAndView proInscriptionGet() {
 		ModelAndView mav = new ModelAndView();
@@ -94,6 +98,10 @@ public class UserController {
 		return new ModelAndView("redirect:/connexion");
 	}
 
+	/**
+	 * Show customer's profil 
+	 * @return
+	 */
 	@GetMapping("/profil")
 	public ModelAndView userProfilGet() {
 		ModelAndView mav = new ModelAndView();
@@ -101,18 +109,8 @@ public class UserController {
 		User_ user = (User_) httpSession.getAttribute("customer");
 		mav.addObject("customer", user);
 
-		mav.setViewName("userPage");
+		mav.setViewName("user/userPage");
 		return mav;
 	}
 
-	@GetMapping("/profil/reservations")
-	public ModelAndView userReservationsGet() {
-		ModelAndView mav = new ModelAndView();
-
-		User_ user = (User_) httpSession.getAttribute("customer");
-		mav.addObject("customer", userService.getUser(user.getId()));
-
-		mav.setViewName("reservationsUserPage");
-		return mav;
-	}
 }

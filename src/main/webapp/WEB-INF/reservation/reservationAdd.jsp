@@ -8,12 +8,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<style>
-<%@include file="style/style.css"%>
-</style>
+<link href="${pageContext.request.contextPath}/style/style.css"
+	type="text/css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="../components/header.jsp"%>
 
 	<main class="container">
 		<h2 class="my-4">${restaurant.name}-Nouvelle réservation</h2>
@@ -21,14 +20,15 @@
 		<form method="post"
 			class="mx-auto shadow-sm mt-2 mb-5 p-4 row col-md-6 ">
 			<div class="mb-3">
-				<label for="date" class="form-label">Date de réservation</label> 
-				<input type="date" id="date" name="DATE" class="form-control">
+				<label for="date" class="form-label">Date de réservation</label> <input
+					type="date" id="date" name="DATE" class="form-control">
 			</div>
 
 			<div class="mb-3">
 				<label for="slot" class="form-label">Heure</label> <select id="slot"
 					name="SLOT" class="form-select">
-					<option value="0">Merci de choisir une heure de réservation</option>
+					<option value="0">Merci de choisir une heure de
+						réservation</option>
 					<option value="18h00">18h00</option>
 					<option value="18h30">18h30</option>
 					<option value="19h00">19h00</option>
@@ -69,6 +69,6 @@
 			</div>
 		</form>
 	</main>
-	<%@include file="footer.jsp"%>
+	<%@include file="../components/footer.jsp"%>
 </body>
 </html>

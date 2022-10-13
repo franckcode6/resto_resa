@@ -18,6 +18,7 @@ import fr.open.restau_resa.service.OptionService;
 import fr.open.restau_resa.service.ReservationService;
 import fr.open.restau_resa.service.ReservationStateService;
 import fr.open.restau_resa.service.RestaurantService;
+import fr.open.restau_resa.service.UserService;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -28,9 +29,15 @@ public class ReservationController {
 	private final ReservationService reservationService;
 	private final RestaurantService restaurantService;
 	private final ReservationStateService reservationStateService;
+	private final UserService userService;
 
 	private final HttpSession httpSession;
 
+	/**
+	 * Reservation form
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/reservation/restaurant")
 	public ModelAndView reservationGet(@RequestParam(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView();
@@ -38,7 +45,7 @@ public class ReservationController {
 		mav.addObject("restaurant", restaurantService.recupererRestaurant(id));
 		mav.addObject("options", optionService.recupererOptions());
 
-		mav.setViewName("reservationAdd");
+		mav.setViewName("reservation/reservationAdd");
 		return mav;
 	}
 
@@ -71,5 +78,20 @@ public class ReservationController {
 		reservationService.addReservation(reservation);
 
 		return new ModelAndView("redirect:/");
+	}
+	
+	/**
+	 * Customer's reservations
+	 * @return
+	 */
+	@GetMapping("/profil/reservations")
+	public ModelAndView userReservationsGet() {
+		ModelAndView mav = new ModelAndView();
+
+		User_ user = (User_) httpSession.getAttribute("customer");
+		mav.addObject("customer", userService.getUser(user.getId()));
+
+		mav.setViewName("reservation/reservationsUserPage");
+		return mav;
 	}
 }
