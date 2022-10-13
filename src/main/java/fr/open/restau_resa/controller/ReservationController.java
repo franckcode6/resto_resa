@@ -94,4 +94,5 @@ public class ReservationController {
 		mav.setViewName("reservation/reservationsUserPage");
 		return mav;
 	}
+	
 }

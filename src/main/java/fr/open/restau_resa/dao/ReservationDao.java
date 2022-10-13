@@ -9,4 +9,5 @@ import fr.open.restau_resa.business.Reservation;
 public interface ReservationDao extends JpaRepository<Reservation, Long> {
 	
 	List<Reservation> findAllByUserId(Long id);
+
 }

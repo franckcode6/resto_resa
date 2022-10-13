@@ -43,11 +43,11 @@
 							<td>${restaurant.email}</td>
 							<td>${restaurant.phone}</td>
 							<td><a href="/details?id=${restaurant.id}"
-								class="btn btn-primary">Détails</a> <a
+								class="btn btn-primary mb-1">Détails</a> <a
 								href="/professionnal/menu?id=${restaurant.id}"
-								class="btn btn-success">Menu</a> <a
+								class="btn btn-success mb-1">Menu</a> <a
 								href="/professionnal/restaurants/modify?id=${restaurant.id}"
-								class="btn btn-warning">Modifier</a> <a
+								class="btn btn-warning mb-1">Modifier</a> <a
 								href="/professionnal/restaurants/delete?id=${restaurant.id}"
 								class="btn btn-danger">Supprimer</a></td>
 						</tr>

@@ -16,8 +16,10 @@ import fr.open.restau_resa.business.Address;
 import fr.open.restau_resa.business.Professionnal;
 import fr.open.restau_resa.business.Restaurant;
 import fr.open.restau_resa.business.Tag;
+import fr.open.restau_resa.business.User_;
 import fr.open.restau_resa.service.AddressService;
 import fr.open.restau_resa.service.ProfessionnalService;
+import fr.open.restau_resa.service.ReservationService;
 import fr.open.restau_resa.service.RestaurantService;
 import fr.open.restau_resa.service.TagService;
 import fr.open.restau_resa.util.SavefileService;
@@ -31,6 +33,7 @@ public class ProfessionnalController {
 
 	private final AddressService addressService;
 	private final ProfessionnalService professionnalService;
+	private final ReservationService reservationService;
 	private final RestaurantService restaurantService;
 	private final TagService tagService;
 
@@ -38,6 +41,7 @@ public class ProfessionnalController {
 
 	/**
 	 * Show the professionnal's profil
+	 * 
 	 * @return
 	 */
 	@GetMapping("/professionnal")
@@ -53,6 +57,7 @@ public class ProfessionnalController {
 
 	/**
 	 * Show the professionnal's restaurants
+	 * 
 	 * @return
 	 */
 	@GetMapping("/professionnal/restaurants")
@@ -68,6 +73,7 @@ public class ProfessionnalController {
 
 	/**
 	 * Restaurant adding form
+	 * 
 	 * @return
 	 */
 	@GetMapping("/professionnal/restaurants/add")
@@ -102,7 +108,7 @@ public class ProfessionnalController {
 
 		String image = multipartFile.getOriginalFilename();
 
-		//If image, use the savefileService to upaload it
+		// If image, use the savefileService to upaload it
 		if (image != "") {
 			savefileService.saveFile(image, multipartFile);
 			restaurant.setImage(image);
@@ -119,6 +125,7 @@ public class ProfessionnalController {
 
 	/**
 	 * Modify the restaurants informations
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -162,5 +169,23 @@ public class ProfessionnalController {
 		restaurantService.deleteRestaurant(id);
 
 		return new ModelAndView("redirect:/professionnal/restaurants");
+	}
+
+	/**
+	 * Reservations linked to the professionnal
+	 * 
+	 * @return
+	 */
+	@GetMapping("/professionnal/reservations")
+	public ModelAndView professionnalReservationsGet() {
+		ModelAndView mav = new ModelAndView();
+
+		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
+		mav.addObject("professionnal", professionnal);
+		
+		//mav.addObject("reservation", reservationService.findAllUsersById(0));
+
+		mav.setViewName("reservation/reservationsProfessionnalPage");
+		return mav;
 	}
 }
