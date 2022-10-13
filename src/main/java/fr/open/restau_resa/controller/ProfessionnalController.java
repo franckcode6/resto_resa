@@ -16,7 +16,6 @@ import fr.open.restau_resa.business.Address;
 import fr.open.restau_resa.business.Professionnal;
 import fr.open.restau_resa.business.Restaurant;
 import fr.open.restau_resa.business.Tag;
-import fr.open.restau_resa.business.User_;
 import fr.open.restau_resa.service.AddressService;
 import fr.open.restau_resa.service.ProfessionnalService;
 import fr.open.restau_resa.service.ReservationService;
@@ -108,7 +107,7 @@ public class ProfessionnalController {
 
 		String image = multipartFile.getOriginalFilename();
 
-		// If image, use the savefileService to upaload it
+		// If image, use the savefileService to upload it
 		if (image != "") {
 			savefileService.saveFile(image, multipartFile);
 			restaurant.setImage(image);
@@ -183,9 +182,35 @@ public class ProfessionnalController {
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
 		mav.addObject("professionnal", professionnal);
 		
-		//mav.addObject("reservation", reservationService.findAllUsersById(0));
+		//mav.addObject("reservations", reservationService.findAllByProfessionnalId(professionnal.getId()));
 
 		mav.setViewName("reservation/reservationsProfessionnalPage");
 		return mav;
+	}
+	
+	/**
+	 * Validate the reservation in pending
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/professionnal/reservations/validate")
+	public ModelAndView validateReservationGet(@RequestParam(name = "id") Long id) {
+
+		reservationService.validateReservation(id);
+
+		return new ModelAndView("redirect:/professionnal/reservations");
+	}
+	
+	/**
+	 * Cancel the reservation in pending
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/professionnal/reservations/cancel")
+	public ModelAndView cancelReservationGet(@RequestParam(name = "id") Long id) {
+
+		reservationService.cancelReservation(id);
+
+		return new ModelAndView("redirect:/professionnal/reservations");
 	}
 }

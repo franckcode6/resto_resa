@@ -17,32 +17,38 @@
 	<main class="container">
 		<h2 class="my-4">Réservations en attente :</h2>
 
-		<div class="row col-md-8 mx-auto">
-			<table class="table table-hover">
-				<thead class="table-dark">
-					<tr>
-						<th>Date</th>
-						<th>Heure</th>
-						<th>Restaurant</th>
-						<th>Pour</th>
-						<th>Etat</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${customer.reservations}" var="reservation">
-						<tr class="table-light">
-							<th>${reservation.date}</th>
-							<td>${reservation.slot}</td>
-							<td>${reservation.restaurant.name}-
-								${reservation.restaurant.address.postalCode}
-								${reservation.restaurant.address.city}</td>
-							<td>${reservation.customersAmount}personnes</td>
-							<td>${reservation.reservationState.state}</td>
+		<c:forEach items="${professionnal.restaurants}" var="restaurant">
+			<div class="row col-md-8 mx-auto">
+			<h3>${restaurant.name}</h3>
+				<table class="table table-hover">
+					<thead class="table-dark">
+						<tr>
+							<th>Date</th>
+							<th>Heure</th>
+							<th>Restaurant</th>
+							<th>Pour</th>
+							<th>Action</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						<c:forEach items="${restaurant.reservations}" var="reservation">
+							<tr class="table-light">
+								<th>${reservation.date}</th>
+								<td>${reservation.slot}</td>
+								<td>${reservation.restaurant.name} -
+									${reservation.restaurant.address.postalCode}
+									${reservation.restaurant.address.city}</td>
+								<td>${reservation.customersAmount} personnes</td>
+								<td>
+									<a href="/professionnal/reservations/validate?id=${reservation.id}" class="btn btn-success">Valider</a>
+									<a href="/professionnal/reservations/cancel?id=${reservation.id}" class="btn btn-danger">Annuler</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:forEach>
 	</main>
 </body>
 </html>

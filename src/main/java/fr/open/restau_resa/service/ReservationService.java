@@ -13,5 +13,11 @@ public interface ReservationService {
 	
 	Reservation addReservation(Reservation reservation);
 
-	List<Reservation> findAllUsersById(long id);
+	List<Reservation> findAllUsersById(Long id);
+
+	List<Reservation> findAllByProfessionnalId(Long id);
+
+	void validateReservation(Long id);
+
+	void cancelReservation(Long id);
 }

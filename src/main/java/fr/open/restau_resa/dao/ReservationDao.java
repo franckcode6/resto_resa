@@ -10,4 +10,5 @@ public interface ReservationDao extends JpaRepository<Reservation, Long> {
 	
 	List<Reservation> findAllByUserId(Long id);
 
+	List<Reservation> findAllByRestaurantProfessionnalId(Long id);
 }
