@@ -170,23 +170,28 @@ public class ProfessionnalController {
 		return new ModelAndView("redirect:/professionnal/restaurants");
 	}
 
+	@GetMapping("/professionnal/reservations")
+	public ModelAndView professionnalReservationsGet() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("reservation/reservationsProfessionnalPage");
+		return mav;
+	}
+
 	/**
-	 * Reservations linked to the professionnal
+	 * Reservations in pending linked to the professionnal
 	 * 
 	 * @return
 	 */
-	@GetMapping("/professionnal/reservations")
-	public ModelAndView professionnalReservationsGet() {
+	@GetMapping("/professionnal/reservations/received")
+	public ModelAndView professionnalReservationsReceivedGet() {
 		ModelAndView mav = new ModelAndView();
 
 		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
 
 		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
 
-		// mav.addObject("reservations",
-		// reservationService.findAllByProfessionnalId(professionnal.getId()));
-
-		mav.setViewName("reservation/reservationsProfessionnalPage");
+		mav.setViewName("reservation/reservationsReceivedProfessionnalPage");
 		return mav;
 	}
 
@@ -216,5 +221,39 @@ public class ProfessionnalController {
 		reservationService.cancelReservation(id);
 
 		return new ModelAndView("redirect:/professionnal/reservations");
+	}
+
+	/**
+	 * Reservations validated by the professionnal
+	 * 
+	 * @return
+	 */
+	@GetMapping("/professionnal/reservations/validated")
+	public ModelAndView professionnalValidReservationsGet() {
+		ModelAndView mav = new ModelAndView();
+
+		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
+
+		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
+
+		mav.setViewName("reservation/reservationsValidatedProfessionnalPage");
+		return mav;
+	}
+
+	/**
+	 * Reservations cancelled by the professionnal
+	 * 
+	 * @return
+	 */
+	@GetMapping("/professionnal/reservations/cancelled")
+	public ModelAndView professionnalCancelReservationsGet() {
+		ModelAndView mav = new ModelAndView();
+
+		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
+
+		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
+
+		mav.setViewName("reservation/reservationsCancelledProfessionnalPage");
+		return mav;
 	}
 }

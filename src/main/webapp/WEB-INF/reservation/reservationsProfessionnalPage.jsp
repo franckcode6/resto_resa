@@ -15,43 +15,15 @@
 	<%@include file="../components/header.jsp"%>
 
 	<main class="container">
-		<h2 class="my-4">Réservations en attente :</h2>
+		<h2 class="my-4">Réservations</h2>
 
-		<c:forEach items="${professionnal.restaurants}" var="restaurant">
-			<div class="row col-md-8 mx-auto">
-				<h3>${restaurant.name}</h3>
-				<table class="table table-hover">
-					<thead class="table-dark">
-						<tr>
-							<th>Date</th>
-							<th>Heure</th>
-							<th>Restaurant</th>
-							<th>Pour</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${restaurant.reservations}" var="reservation">
-							<c:if test="${reservation.reservationState.id eq 1}">
-								<tr class="table-light">
-									<th>${reservation.date}</th>
-									<td>${reservation.slot}</td>
-									<td>${reservation.restaurant.name}-
-										${reservation.restaurant.address.postalCode}
-										${reservation.restaurant.address.city}</td>
-									<td>${reservation.customersAmount}personnes</td>
-									<td><a
-										href="/professionnal/reservations/validate?id=${reservation.id}"
-										class="btn btn-success">Valider</a> <a
-										href="/professionnal/reservations/cancel?id=${reservation.id}"
-										class="btn btn-danger">Annuler</a></td>
-								</tr>
-							</c:if>
-						</c:forEach>
-					</tbody>
-				</table>
+		<div class="row col-md-8 mx-auto">
+			<a href="/professionnal/reservations/received" class="btn btn-warning mb-3">Réservations en attente</a> 
+			<a href="/professionnal/reservations/validated" class="btn btn-success mb-3">Réservations validées</a> 
+			<a href="/professionnal/reservations/cancelled" class="btn btn-danger">Réservations annulées</a>
 			</div>
-		</c:forEach>
 	</main>
+	
+	<%@include file="../components/footer.jsp"%>
 </body>
 </html>
