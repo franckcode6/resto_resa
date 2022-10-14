@@ -48,7 +48,7 @@ public class Restaurant {
 	@ManyToOne
 	private Address address;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant", cascade = CascadeType.REMOVE)
 	private List<Reservation> reservations;
 
 	@ManyToMany
