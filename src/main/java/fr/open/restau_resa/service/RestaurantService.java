@@ -19,4 +19,6 @@ public interface RestaurantService {
 			boolean disabled, Professionnal professionnal, Address address);
 
 	void deleteRestaurant(Long id);
+
+	List<Restaurant> getRestaurantsByReservationsUserId(Long id);
 }

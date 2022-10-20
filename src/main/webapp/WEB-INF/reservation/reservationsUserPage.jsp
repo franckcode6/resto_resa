@@ -1,4 +1,5 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +20,24 @@
 		<h2 class="my-4">Bonjour ${customer.firstName}, voici vos
 			réservations :</h2>
 
-		<div class="row  col-md-8 mx-auto">
+		<div class="row col-md-8 mx-auto">
+
+			<div id="filtres">
+				<form action="/profil/reservations/filtrer" method="get"
+					class="mb-2 col-md-6">
+					<label for="restaurant" class="form-label"> Restaurant </label>
+					<div class="d-flex">
+						<select name="RESTAURANT" id="restaurant" class="form-select">
+							<option value=" " selected disabled hidden="true">Sélectionner
+								un restaurant</option>
+							<c:forEach items="${restaurants}" var="restaurant">
+									<option value="${restaurant.id}">${restaurant.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</form>
+			</div>
+
 			<table class="table table-hover">
 				<thead class="table-dark">
 					<tr>
@@ -35,7 +53,7 @@
 						<tr class="table-light">
 							<th>${reservation.date}</th>
 							<td>${reservation.slot}</td>
-							<td>${reservation.restaurant.name}-
+							<td>${reservation.restaurant.name} -
 								${reservation.restaurant.address.postalCode}
 								${reservation.restaurant.address.city}</td>
 							<td>${reservation.customersAmount}personnes</td>

@@ -90,6 +90,7 @@ public class ReservationController {
 
 		User_ user = (User_) httpSession.getAttribute("customer");
 		mav.addObject("customer", userService.getUser(user.getId()));
+		mav.addObject("restaurants", restaurantService.getRestaurantsByReservationsUserId(user.getId()));
 
 		mav.setViewName("reservation/reservationsUserPage");
 		return mav;

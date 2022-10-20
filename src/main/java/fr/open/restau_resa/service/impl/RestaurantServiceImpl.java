@@ -1,5 +1,6 @@
 package fr.open.restau_resa.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -51,5 +52,21 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.setAddress(address);
 
 		return restaurantDao.save(restaurant);
+	}
+
+	@Override
+	public List<Restaurant> getRestaurantsByReservationsUserId(Long id) {
+		List<Restaurant> restaurants = restaurantDao.findAllByReservationsUserId(id);
+		//New list that contains only single restaurants
+		List<Restaurant> cleanRestaurantList = new ArrayList<>();
+
+		//Add a restaurant only if he's not already in the list
+		for (Restaurant restaurant : restaurants) {
+			if (!cleanRestaurantList.contains(restaurant)) {
+				cleanRestaurantList.add(restaurant);
+			}
+		}
+
+		return cleanRestaurantList;
 	}
 }
