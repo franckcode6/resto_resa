@@ -1,7 +1,9 @@
 @import
-	url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+	url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap')
+	;
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 
 #background {
 	background-image: url("../../images/background.jpg");
@@ -20,14 +22,14 @@
 
 #detailsRestaurant {
 	background-color: white;
-	box-shadow : 1px 1px 5px lightgrey;
+	box-shadow: 1px 1px 5px lightgrey;
 	border-radius: 20px;
 }
 
 #detailsRestaurant img {
-	height : 300px;
-	padding : 0;
-	object-fit : cover;
+	height: 300px;
+	padding: 0;
+	object-fit: cover;
 }
 
 #detailsRestaurant .restoPic {
@@ -41,8 +43,8 @@
 
 #restaurant .restaurantCard {
 	background-color: white;
-	margin: 30px 0; 
-	box-shadow : 1px 1px 5px lightgrey;
+	margin: 30px 0;
+	box-shadow: 1px 1px 5px lightgrey;
 	border-radius: 20px;
 	display: flex;
 	align-items: center;
@@ -64,7 +66,7 @@
 
 .tag {
 	color: white;
-	background : lightgreen;
+	background: lightgreen;
 	display: inline-block;
 	padding: 5px;
 	border-radius: 10px;
@@ -82,13 +84,13 @@ a:hover {
 
 body {
 	background-color: #FFFFF6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 footer {
-	margin-top : auto;
+	margin-top: auto;
 }
 
 h2 {

@@ -8,5 +8,5 @@ function showFilters() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    filterButton.addEventListener("click", showFilters);
+	filterButton.addEventListener("click", showFilters);
 })

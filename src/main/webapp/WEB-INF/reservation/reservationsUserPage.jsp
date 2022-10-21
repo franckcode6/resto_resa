@@ -21,7 +21,7 @@
 			réservations :</h2>
 
 		<div class="row col-md-8 mx-auto pb-5">
-			<section id="filtres" class="pb-3">
+			<section id="filtres" class="pb-3 hide">
 				<form action="/profil/reservations/filter" method="get" class="mb-2">
 					<label for="restaurant" class="form-label"> Restaurant </label>
 					<div class="d-flex">
