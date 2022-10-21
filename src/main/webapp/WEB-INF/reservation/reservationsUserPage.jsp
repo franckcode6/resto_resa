@@ -22,36 +22,35 @@
 
 		<div class="row col-md-8 mx-auto pb-5">
 			<section id="filtres" class="pb-3">
-				<form action="/profil/reservations/filter" method="get"
-					class="mb-2">
+				<form action="/profil/reservations/filter" method="get" class="mb-2">
 					<label for="restaurant" class="form-label"> Restaurant </label>
 					<div class="d-flex">
 						<select name="RESTAURANT" id="restaurant" class="form-select">
-							<option value=" " selected disabled>Sélectionner
-								un restaurant</option>
+							<option value=" " selected disabled>Sélectionner un
+								restaurant</option>
 							<c:forEach items="${restaurants}" var="restaurant">
-									<option value="${restaurant.name}">${restaurant.name}</option>
+								<option value="${restaurant.name}">${restaurant.name}</option>
 							</c:forEach>
-						</select>
-					<input type="submit" value="Filtrer" class="btn btn-sm btn-success ms-1">
+						</select> <input type="submit" value="Filtrer"
+							class="btn btn-sm btn-success ms-1">
 					</div>
 				</form>
-				
-				<form action="/profil/reservations/filter" method="get"
-					class="mb-2">
+
+				<form action="/profil/reservations/filter" method="get" class="mb-2">
 					<label for="state" class="form-label"> Etat </label>
 					<div class="d-flex">
 						<select name="STATE" id="state" class="form-select">
-							<option value=" " selected disabled>Sélectionner
-								un état</option>
+							<option value=" " selected disabled>Sélectionner un état</option>
 							<c:forEach items="${states}" var="state">
-									<option value="${state.state}">${state.state}</option>
+								<option value="${state.state}">${state.state}</option>
 							</c:forEach>
-						</select>
-						<input type="submit" value="Filtrer" class="btn btn-sm btn-success ms-1">
+						</select> <input type="submit" value="Filtrer"
+							class="btn btn-sm btn-success ms-1">
 					</div>
 				</form>
 			</section>
+
+			<button id="filterButton" class="btn btn-secondary mb-2">Filtres</button>
 
 			<table class="table table-hover">
 				<thead class="table-dark">
@@ -68,10 +67,10 @@
 						<tr class="table-light">
 							<th>${reservation.date}</th>
 							<td>${reservation.slot}</td>
-							<td>${reservation.restaurant.name} -
+							<td>${reservation.restaurant.name}-
 								${reservation.restaurant.address.postalCode}
 								${reservation.restaurant.address.city}</td>
-							<td>${reservation.customersAmount} personnes</td>
+							<td>${reservation.customersAmount}personnes</td>
 							<td>${reservation.reservationState.state}</td>
 						</tr>
 					</c:forEach>
@@ -80,5 +79,7 @@
 		</div>
 	</main>
 	<%@include file="../components/footer.jsp"%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/script/script.js"></script>
 </body>
 </html>
