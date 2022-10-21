@@ -35,6 +35,7 @@ public class ReservationController {
 
 	/**
 	 * Reservation form
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -79,9 +80,10 @@ public class ReservationController {
 
 		return new ModelAndView("redirect:/");
 	}
-	
+
 	/**
 	 * Customer's reservations
+	 * 
 	 * @return
 	 */
 	@GetMapping("/profil/reservations")
@@ -91,9 +93,30 @@ public class ReservationController {
 		User_ user = (User_) httpSession.getAttribute("customer");
 		mav.addObject("customer", userService.getUser(user.getId()));
 		mav.addObject("restaurants", restaurantService.getRestaurantsByReservationsUserId(user.getId()));
+		mav.addObject("states", reservationStateService.getReservationStatesByReservationsUserId(user.getId()));
 
 		mav.setViewName("reservation/reservationsUserPage");
 		return mav;
 	}
-	
+
+	@GetMapping("/profil/reservations/filter")
+	public ModelAndView reservationsGet(@RequestParam(name = "RESTAURANT", required = false) String restaurant,
+			@RequestParam(name = "STATE", required = false) String state) {
+		ModelAndView mav = new ModelAndView();
+
+		if (restaurant != null) {
+			System.out.println(restaurant);
+			mav.addObject("reservations", reservationService.findAllByRestaurant(restaurant));
+		}
+
+		if (state != null) {
+			System.out.println(state);
+			mav.addObject("reservations", reservationService.findAllByReservationState(state));
+		}
+		
+		mav.setViewName("reservation/reservationsUserPageFiltered");
+
+		return mav;
+	}
+
 }

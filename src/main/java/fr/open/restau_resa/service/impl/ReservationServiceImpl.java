@@ -42,6 +42,16 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
+	public List<Reservation> findAllByRestaurant(String name) {
+		return reservationDao.findAllByRestaurantNameContaining(name);
+	}
+
+	@Override
+	public List<Reservation> findAllByReservationState(String state) {
+		return reservationDao.findAllByReservationStateStateContaining(state);
+	}
+
+	@Override
 	public void validateReservation(Long id) {
 
 		// Get the reservation to change its reservation state

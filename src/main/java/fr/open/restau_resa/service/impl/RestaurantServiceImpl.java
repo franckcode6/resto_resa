@@ -57,16 +57,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public List<Restaurant> getRestaurantsByReservationsUserId(Long id) {
 		List<Restaurant> restaurants = restaurantDao.findAllByReservationsUserId(id);
-		//New list that contains only single restaurants
-		List<Restaurant> cleanRestaurantList = new ArrayList<>();
+		// New list that contains only single restaurants
+		List<Restaurant> restaurantListWithoutDuplicate = new ArrayList<>();
 
-		//Add a restaurant only if he's not already in the list
+		// Add a restaurant only if he's not already in the list
 		for (Restaurant restaurant : restaurants) {
-			if (!cleanRestaurantList.contains(restaurant)) {
-				cleanRestaurantList.add(restaurant);
+			if (!restaurantListWithoutDuplicate.contains(restaurant)) {
+				restaurantListWithoutDuplicate.add(restaurant);
 			}
 		}
 
-		return cleanRestaurantList;
+		return restaurantListWithoutDuplicate;
 	}
 }

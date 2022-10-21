@@ -17,6 +17,10 @@ public interface ReservationService {
 
 	List<Reservation> findAllByProfessionnalId(Long id);
 
+	List<Reservation> findAllByRestaurant(String restaurant);
+	
+	List<Reservation> findAllByReservationState(String state);
+	
 	void validateReservation(Long id);
 
 	void cancelReservation(Long id);

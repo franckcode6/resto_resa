@@ -20,23 +20,38 @@
 		<h2 class="my-4">Bonjour ${customer.firstName}, voici vos
 			réservations :</h2>
 
-		<div class="row col-md-8 mx-auto">
-
-			<div id="filtres">
-				<form action="/profil/reservations/filtrer" method="get"
-					class="mb-2 col-md-6">
+		<div class="row col-md-8 mx-auto pb-5">
+			<section id="filtres" class="pb-3">
+				<form action="/profil/reservations/filter" method="get"
+					class="mb-2">
 					<label for="restaurant" class="form-label"> Restaurant </label>
 					<div class="d-flex">
 						<select name="RESTAURANT" id="restaurant" class="form-select">
-							<option value=" " selected disabled hidden="true">Sélectionner
+							<option value=" " selected disabled>Sélectionner
 								un restaurant</option>
 							<c:forEach items="${restaurants}" var="restaurant">
-									<option value="${restaurant.id}">${restaurant.name}</option>
+									<option value="${restaurant.name}">${restaurant.name}</option>
 							</c:forEach>
 						</select>
+					<input type="submit" value="Filtrer" class="btn btn-sm btn-success ms-1">
 					</div>
 				</form>
-			</div>
+				
+				<form action="/profil/reservations/filter" method="get"
+					class="mb-2">
+					<label for="state" class="form-label"> Etat </label>
+					<div class="d-flex">
+						<select name="STATE" id="state" class="form-select">
+							<option value=" " selected disabled>Sélectionner
+								un état</option>
+							<c:forEach items="${states}" var="state">
+									<option value="${state.state}">${state.state}</option>
+							</c:forEach>
+						</select>
+						<input type="submit" value="Filtrer" class="btn btn-sm btn-success ms-1">
+					</div>
+				</form>
+			</section>
 
 			<table class="table table-hover">
 				<thead class="table-dark">
@@ -56,7 +71,7 @@
 							<td>${reservation.restaurant.name} -
 								${reservation.restaurant.address.postalCode}
 								${reservation.restaurant.address.city}</td>
-							<td>${reservation.customersAmount}personnes</td>
+							<td>${reservation.customersAmount} personnes</td>
 							<td>${reservation.reservationState.state}</td>
 						</tr>
 					</c:forEach>

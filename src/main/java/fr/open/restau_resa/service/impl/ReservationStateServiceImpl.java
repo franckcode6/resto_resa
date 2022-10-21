@@ -1,5 +1,8 @@
 package fr.open.restau_resa.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import fr.open.restau_resa.business.ReservationState;
@@ -16,5 +19,19 @@ public class ReservationStateServiceImpl implements ReservationStateService {
 	@Override
 	public ReservationState getState(Long id) {
 		return reservationStateDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<ReservationState> getReservationStatesByReservationsUserId(Long id) {
+		List<ReservationState> reservationStates = reservationStateDao.findAllByReservationsUserId(id);
+		List<ReservationState> reservationStatesWithoutDuplicates = new ArrayList<>();
+
+		for (ReservationState reservationState : reservationStates) {
+			if (!reservationStatesWithoutDuplicates.contains(reservationState)) {
+				reservationStatesWithoutDuplicates.add(reservationState);
+			}
+		}
+
+		return reservationStatesWithoutDuplicates;
 	}
 }
