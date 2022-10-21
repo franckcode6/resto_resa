@@ -28,6 +28,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
+	public List<Restaurant> findAllByName(String name) {
+		return restaurantDao.findAllByNameContaining(name);
+	}
+
+	@Override
+	public List<Restaurant> findAllByCity(String city) {
+		return restaurantDao.findAllByAddressCityContaining(city);
+	}
+
+	@Override
 	public Restaurant addRestaurant(Restaurant restaurant) {
 		return restaurantDao.save(restaurant);
 	}

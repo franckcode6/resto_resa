@@ -105,12 +105,10 @@ public class ReservationController {
 		ModelAndView mav = new ModelAndView();
 
 		if (restaurant != null) {
-			System.out.println(restaurant);
 			mav.addObject("reservations", reservationService.findAllByRestaurant(restaurant));
 		}
 
 		if (state != null) {
-			System.out.println(state);
 			mav.addObject("reservations", reservationService.findAllByReservationState(state));
 		}
 		

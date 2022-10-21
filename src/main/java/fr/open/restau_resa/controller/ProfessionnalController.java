@@ -69,6 +69,27 @@ public class ProfessionnalController {
 		mav.setViewName("restaurant/restaurantProfessionnalPage");
 		return mav;
 	}
+	
+	@GetMapping("/professionnal/restaurants/filter")
+	public ModelAndView restaurantProfessionnalPageFilteredGet(
+			@RequestParam(name = "RESTAURANT", required = false) String name,
+			@RequestParam(name = "CITY", required = false) String city) {
+		ModelAndView mav = new ModelAndView();
+
+		Professionnal professionnal = (Professionnal) httpSession.getAttribute("professionnal");
+		mav.addObject("professionnal", professionnalService.getProfessionnal(professionnal.getId()));
+		
+		if (name != null) {
+			mav.addObject("restaurants", restaurantService.findAllByName(name));
+		}
+		
+		if (city != null) {
+			mav.addObject("restaurants", restaurantService.findAllByCity(city));
+		}
+
+		mav.setViewName("restaurant/restaurantProfessionnalPageFiltered");
+		return mav;
+	}
 
 	/**
 	 * Restaurant adding form

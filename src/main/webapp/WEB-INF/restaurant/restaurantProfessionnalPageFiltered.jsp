@@ -20,44 +20,9 @@
 
 		<div class="row col-md-10 mx-auto">
 			<div class="p-0">
-				<a href="/professionnal/restaurants/add"
-					class="btn btn-danger mb-3 float-end">Nouveau restaurant</a>
+				<a href="/professionnal/restaurants"
+					class="btn btn-secondary mb-2 float-end">Retour à la liste</a>
 			</div>
-
-			<section id="filtres" class="pb-3 hide">
-				<form action="/professionnal/restaurants/filter" method="get"
-					class="mb-2">
-					<label for="restaurant" class="form-label"> Restaurant </label>
-					<div class="d-flex">
-						<select name="RESTAURANT" id="restaurant" class="form-select">
-							<option value=" " selected disabled>Sélectionner un
-								restaurant</option>
-							<c:forEach items="${professionnal.restaurants}" var="restaurant">
-								<option value="${restaurant.name}">${restaurant.name}</option>
-							</c:forEach>
-						</select> <input type="submit" value="Filtrer"
-							class="btn btn-sm btn-success ms-1">
-					</div>
-				</form>
-
-				<form action="/professionnal/restaurants/filter" method="get"
-					class="mb-2">
-					<label for="state" class="form-label"> Ville </label>
-					<div class="d-flex">
-						<select name="CITY" id="state" class="form-select">
-							<option value=" " selected disabled>Sélectionner une
-								ville</option>
-							<c:forEach items="${professionnal.restaurants}" var="restaurant">
-								<option value="${restaurant.address.city}">${restaurant.address.city}</option>
-							</c:forEach>
-						</select> <input type="submit" value="Filtrer"
-							class="btn btn-sm btn-success ms-1">
-					</div>
-				</form>
-			</section>
-
-			<button id="filterButton" class="btn btn-secondary mb-2">Filtres</button>
-
 			<table class="table table-hover">
 				<thead class="table-dark">
 					<tr>
@@ -69,7 +34,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${professionnal.restaurants}" var="restaurant">
+					<c:forEach items="${restaurants}" var="restaurant">
 						<tr class="table-light">
 							<th>${restaurant.name}</th>
 							<td>${restaurant.address.noAddress}
@@ -92,7 +57,5 @@
 		</div>
 	</main>
 	<%@include file="../components/footer.jsp"%>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/script/script.js"></script>
 </body>
 </html>

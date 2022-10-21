@@ -34,7 +34,7 @@ public class Address {
 	private String postalCode;
 
 	@NotBlank
-	private String City;
+	private String city;
 
 	@OneToMany(mappedBy = "address", cascade = CascadeType.REMOVE)
 	private List<Restaurant> restraurants;
@@ -43,6 +43,6 @@ public class Address {
 		this.noAddress = noAddress;
 		this.address = address;
 		this.postalCode = postalCode;
-		this.City = city;
+		this.city = city;
 	}
 }

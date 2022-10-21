@@ -21,4 +21,8 @@ public interface RestaurantService {
 	void deleteRestaurant(Long id);
 
 	List<Restaurant> getRestaurantsByReservationsUserId(Long id);
+
+	List<Restaurant> findAllByName(String name);
+	
+	List<Restaurant> findAllByCity(String city);
 }
