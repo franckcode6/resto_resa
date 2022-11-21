@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.open.restau_resa.service.RestaurantService;
 import lombok.AllArgsConstructor;
 
-@Controller
+@Controlle
 @AllArgsConstructor
 public class RestaurantController {
 
