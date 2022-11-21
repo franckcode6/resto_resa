@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: maven build test
     runs-on: windows-latest
 
     steps:
